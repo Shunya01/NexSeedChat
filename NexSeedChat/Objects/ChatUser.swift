@@ -6,4 +6,17 @@
 //  Copyright © 2019 渡邉舜也. All rights reserved.
 //
 
-import Foundation
+struct ChatUser {
+    
+    //ユーザーに振られた固有ID。Authenticationの中にある。
+    let  uid: String
+    
+    //名前
+    let  name:String
+    
+    //プロフィールURL
+    let photoUrl:String
+    
+    
+    
+}

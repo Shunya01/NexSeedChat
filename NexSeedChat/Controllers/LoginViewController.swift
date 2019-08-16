@@ -30,6 +30,7 @@ extension LoginViewController: GIDSignInDelegate,GIDSignInUIDelegate{
         if let error = error {
             print("Google Sign In でエラーが出ました")
             print(error.localizedDescription)
+            //処理の中断
             return
         }
         
@@ -40,15 +41,14 @@ extension LoginViewController: GIDSignInDelegate,GIDSignInUIDelegate{
         let credential = GoogleAuthProvider.credential(withIDToken: authentication!.idToken, accessToken: authentication!.accessToken)
         
         //Googleでログインする。Firebaseにログイン情報を書き込む
-        Auth.auth().signIn(with: credential) {(AuthDataResult,error)
-            in
+        Auth.auth().signIn(with: credential) {(AuthDataResult,error) in
             
             if let error = error {
                 print("失敗")
                 print(error.localizedDescription)
             }else{
                 print("成功")
-                //selfとViewControllerを指す
+                //selfはLoginViewControllerを指す。Authではないと教える
                 self.performSegue(withIdentifier: "toChat", sender: nil)
             }
         }
